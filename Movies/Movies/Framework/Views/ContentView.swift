@@ -9,66 +9,59 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
-  
-//  init() {
-//      viewModel.moviesArray = [
-//          Movie(
-//              adult: false,
-//              backdrop_path: "/path_to_backdrop.jpg",
-//              genre_ids: "12,14,16",
-//              id: 1,
-//              original_language: "en",
-//              original_title: "Original Test Movie 1",
-//              overview: "This is a test movie.",
-//              popularity: 5.5,
-//              poster_path: "/path_to_poster.jpg",
-//              release_dat: "2022-10-10",
-//              title: "Test Movie 1",
-//              video: false,
-//              vote_average: 5,
-//              vote_count: 1000
-//          ),
-//          Movie(
-//              adult: false,
-//              backdrop_path: "/path_to_backdrop2.jpg",
-//              genre_ids: "12,14,16",
-//              id: 2,
-//              original_language: "en",
-//              original_title: "Original Test Movie 2",
-//              overview: "This is another test movie.",
-//              popularity: 6.0,
-//              poster_path: "/path_to_poster2.jpg",
-//              release_dat: "2022-11-11",
-//              title: "Test Movie 2",
-//              video: false,
-//              vote_average: 6,
-//              vote_count: 1500
-//          )
-//      ]
-//  }
-
-
-  
+    
     var body: some View {
         NavigationView {
-            List(viewModel.moviesArray, id: \.id) { movie in
-                HStack {
-                    Text(movie.title)
-                        .bold()
-                    VStack {
-                        Text(movie.overview)
-                            .foregroundColor(.black)
-                            .padding(.bottom)
-                    } .padding()
-                }
-                .foregroundColor(.gray)
-            }
+          List(viewModel.moviesArray, id: \.id) { movie in
+              HStack {
+                if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.poster_path )"),
+                     let data = try? Data(contentsOf: url),
+                     let uiImage = UIImage(data: data) {
+                      Image(uiImage: uiImage)
+                          .resizable()
+                          .aspectRatio(contentMode: .fit)
+                          .padding(.top, 8)
+                          .frame(width: 100, height: 150)
+                          .cornerRadius(5)
+                  }
+                  
+                  VStack(alignment: .leading, spacing: 10) {
+                    
+                      Text(movie.title)
+                          .foregroundColor(.red)
+                          .font(.system(size: 20))
+                    
+                    Text("Release Date: \(movie.release_date)")
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                    
+                    Text("Popularity: \(movie.popularity)")
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+
+                      
+                      Text("Rating: \(movie.vote_average)")
+                          .font(.subheadline)
+                          .foregroundColor(.blue)
+                      
+//                      Text(movie.overview)
+//                          .font(.body)
+//                          .foregroundColor(.gray)
+                    
+              
+                  }
+                  .padding(.leading, 10)
+                  
+                  Spacer()
+              }
+              .padding(.vertical, 8)
+          }
             .onAppear {
                 Task {
                     await viewModel.fetch()
                 }
             }
-            .navigationTitle("Movie List")
+            .navigationTitle("Popular Movies")
         }
     }
 }

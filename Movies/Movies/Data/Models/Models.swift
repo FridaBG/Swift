@@ -22,7 +22,7 @@ struct Movie: Codable {
     var release_date: String
     var title: String
     var video: Bool
-    var vote_average: Float
+    var vote_average: Double
     var vote_count: Int
 }
   
