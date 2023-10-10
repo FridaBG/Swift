@@ -17,7 +17,6 @@ struct API {
 
 protocol MoviesProtocol {
     func getMovies() async ->[Movie]?
-//    func getUser(idUser: Int) async -> User?
 }
 
 class MoviesRepository: MoviesProtocol {

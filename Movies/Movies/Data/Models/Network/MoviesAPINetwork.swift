@@ -29,7 +29,6 @@ class MoviesAPINetwork {
         
       switch response.result {
       case .success(let data):
-          // Imprime la respuesta en formato String.
           if let jsonString = String(data: data, encoding: .utf8) {
               print(jsonString)
           }

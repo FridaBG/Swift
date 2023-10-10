@@ -22,14 +22,14 @@ struct ContentView: View {
                           .aspectRatio(contentMode: .fit)
                           .padding(.top, 8)
                           .frame(width: 100, height: 150)
-                          .cornerRadius(5)
                   }
                   
                   VStack(alignment: .leading, spacing: 10) {
                     
                       Text(movie.title)
-                          .foregroundColor(.red)
+                          .foregroundColor(.black)
                           .font(.system(size: 20))
+                          .bold()
                     
                     Text("Release Date: \(movie.release_date)")
                         .font(.subheadline)
@@ -44,17 +44,13 @@ struct ContentView: View {
                           .font(.subheadline)
                           .foregroundColor(.blue)
                       
-//                      Text(movie.overview)
-//                          .font(.body)
-//                          .foregroundColor(.gray)
-                    
-              
                   }
                   .padding(.leading, 10)
                   
                   Spacer()
               }
               .padding(.vertical, 8)
+           
           }
             .onAppear {
                 Task {
