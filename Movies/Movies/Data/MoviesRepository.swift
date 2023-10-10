@@ -26,12 +26,15 @@ class MoviesRepository: MoviesProtocol {
         self.nservice = nservice
     }
     
-  func getUsers() async -> [Movie]? {
+  func getMovies() async -> [Movie]? {
       return await nservice.getMovies(url: URL(string: "\(API.base)")!)
   }
     
+}
+
+
+
 //    func getUser(idUser: Int) async -> User? {
 //        print("\(API.base)/\(idUser)")
 //        return await nservice.getUser(url: URL(string: "\(API.base)/\(idUser)")!)
 //    }
-}
