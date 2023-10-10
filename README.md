@@ -1,7 +1,3 @@
-# Swift
-Evaluación de swift
-
-
 # Nombre:
 Frida Bailleres González
 
