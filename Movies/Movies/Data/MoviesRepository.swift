@@ -10,7 +10,9 @@ import Foundation
 import Foundation
 // 'https://api.themoviedb.org/3/discover/movie?include_video=false&sort_by=popularity.desc
 struct API {
-    static let base = "'https://api.themoviedb.org/3/discover/movie?include_video=false&sort_by=popularity.desc"
+    //static let base = "https://api.themoviedb.org/3/discover/movie?include_video=false&sort_by=popularity.desc"
+    static let base = "https://api.themoviedb.org/3"
+
     
 }
 
@@ -26,12 +28,10 @@ class MoviesRepository: MoviesProtocol {
         self.nservice = nservice
     }
     
-  func getMovies() async -> [Movie]? {
-      return await nservice.getMovies(url: URL(string: "\(API.base)")!)
-  }
-    
+    func getMovies() async -> [Movie]? {
+        return await nservice.getMovies()
+    }
 }
-
 
 
 //    func getUser(idUser: Int) async -> User? {
